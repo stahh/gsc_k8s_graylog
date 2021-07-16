@@ -8,7 +8,7 @@
 
 4. Get cluster name: kubectl config get-contexts
 
-5. Switch to graylog cluster: kubectl config use-context gke[<graylog cluster name]
+5. Switch to graylog cluster: kubectl config use-context gke_[graylog cluster name]
 
 6. Create deployments:
  kubectl create -f mongo-deployment.yaml,elasticsearch-deployment.yaml,graylog-deployment.yaml
