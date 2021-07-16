@@ -1,0 +1,58 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    service: graylog-deploy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: graylog-deploy
+  template:
+    metadata:
+      labels:
+        app: graylog-deploy
+    spec:
+      containers:
+      - env:
+        - name: GRAYLOG_PASSWORD_SECRET
+          value: g0ABP9MJnWCjWtBX9JHFgjKAmD3wGXP3E0JQNOKlquDHnCn5689QAF8rRL66HacXLPA6fvwMY8BZoVVw0JqHnSAZorDDOdCk
+        - name: GRAYLOG_ROOT_PASSWORD_SHA2
+          value: 8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918
+        - name: GRAYLOG_ELASTICSEARCH_HOSTS
+          value: http://elasticsearch:9200
+        - name: GRAYLOG_MONGODB_URI
+          value: mongodb://mongo:27017/graylog
+        - name: GRAYLOG_WEB_ENDPOINT_URI
+          value: /
+        - name: GRAYLOG_HTTP_EXTERNAL_URI
+          value: http://EXTERNAL-IP:9000/  # VERY IMPORTANT! It needs to be changed after receiving the EXTERNAL-IP
+        image: graylog/graylog:4.0  # Replace with actual version
+        name: graylog3
+        ports:
+        - containerPort: 9000
+          protocol: TCP
+        - containerPort: 12201
+          protocol: TCP
+      restartPolicy: Always
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    service: graylog-deploy
+spec:
+  ports:
+  - name: http
+    nodePort: 31706
+    port: 9000
+    protocol: TCP
+    targetPort: 9000
+  - name: rest
+    nodePort: 31707
+    port: 12201
+    protocol: TCP
+    targetPort: 12201
+  selector:
+    app: graylog-deploy
+  type: LoadBalancer
