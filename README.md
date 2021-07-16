@@ -19,6 +19,6 @@
 value: http://EXTERNAL-IP:9000/ and replace EXTERNAL-IP with real IP address from previous step
    
 9. Run in terminal: echo -n "Enter Password: " && head -1 </dev/stdin | tr -d '\n' | sha256sum | cut -d" " -f1 
-and put your password. Copy gotten hash, find in yaml file line value: 8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918 and replace with copied hash
+and put your password. Copy resulting hash, find in yaml file line value: 8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918 and replace with copied hash
    
 10. Save deployment, wait some time and connect to http://REAL EXTERNAL-IP:9000/
