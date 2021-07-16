@@ -1,0 +1,1 @@
+# gsc_k8s_graylog
