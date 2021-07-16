@@ -11,7 +11,7 @@
 5. Switch to graylog cluster: kubectl config use-context gke_cience-core_us-central1-c_graylog-cluster
 
 6. Create deployments:
- :code: kubectl create -f mongo-deployment.yaml,elasticsearch-service.yaml,graylog-service.yaml
+ kubectl create -f mongo-deployment.yaml,elasticsearch-deployment.yaml,graylog-deployment.yaml
    
 7. Check services and get EXTERNAL-IP: kubectl get services
 
