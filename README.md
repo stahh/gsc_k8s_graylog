@@ -1,6 +1,6 @@
 # gsc_k8s_graylog
 
-1. Clone git clone https://github.com/stahh/gsc_k8s_graylog.git
+1. Clone repo: git clone https://github.com/stahh/gsc_k8s_graylog.git
 
 2. Go to source directory: cd gsc_k8s_graylog
 
@@ -8,7 +8,7 @@
 
 4. Get cluster name: kubectl config get-contexts
 
-5. Switch to graylog cluster: kubectl config use-context gke_cience-core_us-central1-c_graylog-cluster
+5. Switch to graylog cluster: kubectl config use-context gke_<graylog cluster name>
 
 6. Create deployments:
  kubectl create -f mongo-deployment.yaml,elasticsearch-deployment.yaml,graylog-deployment.yaml
